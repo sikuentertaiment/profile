@@ -65,7 +65,9 @@
 		const target = document.querySelector('#label');
 		// wallking label
 		const labels = [
-			"We made games, apps and more!"
+			"We are Siku Entertaiment",
+			"We made games, apps and more!",
+			"We also do freelancing"
 		];
 		let intervalId;
 
@@ -73,7 +75,7 @@
 			let oi = 0;
 			let ii = 0;
 			const oiend = labels.length;
-			const iiend = labels[oi].length;
+			let iiend = labels[oi].length;
 			let char = labels[oi][ii];
 			const display = (char)=>{
 				target.innerHTML += char;
@@ -101,6 +103,7 @@
 					if(oi === oiend){
 						oi = 0;
 					}
+					iiend = labels[oi].length;
 					char = labels[oi][ii];
 					display(char);
 					run();
