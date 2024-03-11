@@ -54,11 +54,62 @@
 				z-index:2;
 				font-size: 12px;
 			">
-				<span>
-					We made games, apps, and more!
+				<span id=label>
+					- 
 				</span>
 			</div>
 		</div>	
 	</div>
+	<script>
+		// define the target
+		const target = document.querySelector('#label');
+		// wallking label
+		const labels = [
+			"We made games, apps and more!"
+		];
+		let intervalId;
+
+		const walking = (labels,target,time=1000,delays=1000)=>{
+			let oi = 0;
+			let ii = 0;
+			const oiend = labels.length;
+			const iiend = labels[oi].length;
+			let char = labels[oi][ii];
+			const display = (char)=>{
+				target.innerHTML += char;
+				ii += 1;
+				if(ii === iiend){
+					// delay
+					delay();
+				}
+			}
+			const deletE = ()=>{
+				target.innerHTML = '- ';
+			}
+			const run = ()=>{
+				intervalId = setInterval(()=>{
+					char = labels[oi][ii];
+					display(char);
+				},time);
+			}
+			const delay = ()=>{
+				clearInterval(intervalId);
+				setTimeout(()=>{
+					deletE();
+					ii = 0;
+					oi += 1;
+					if(oi === oiend){
+						oi = 0;
+					}
+					char = labels[oi][ii];
+					display(char);
+					run();
+				},delays);
+			}
+			display(char);
+			run();
+		}
+		walking(labels,target,100);
+	</script>
 </body>
 </html>
