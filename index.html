@@ -6,6 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Siku Entertaiment: We made game, apps and more!</title>
 	<style>
+		@font-face{
+			font-family: 'lato_regular';
+			src:url('./more/font/Lato-Regular.ttf');
+		}
 		body{
 			padding:0;
 			margin:0;
@@ -14,7 +18,10 @@
 			position: fixed;
 			width: 100%;
 			height: 100%;
-			font-family: calibri;
+			font-family: monospace;
+			user-select: none;
+			user-zoom: none;
+			overflow: hidden;
 		}
 		.onepage{
 			width:100%;
@@ -32,6 +39,54 @@
 			width:100%;
 			height: 100%;
 		}
+		.imagebg{
+			width: 100%;
+			height: 100%;
+			opacity: .3;
+			object-fit: cover;
+		}
+		.button{
+			background:black;
+			color:white;
+			border:1px solid white;
+			font-weight:bold;
+			border-radius: 10px;
+			rotate: 90px;
+			padding:15px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.uprotate{
+			transform: rotate(90deg);
+		}
+		.downrotate{
+			transform: rotate(90deg);
+		}
+		.button:hover{
+			opacity: 1;
+			cursor:pointer;
+			background:white;
+			color:black;
+		}
+		.navigation{
+
+		}
+		.bigone{
+			font-size: 64px;
+		}
+		.smallone{
+			font-size: 32px;
+		}
+
+		@media screen and (max-width:700px){
+			.bigone{
+				font-size: 24px;
+			}
+			.smallone{
+				font-size: 12px;
+			}	
+		}
 	</style>
 </head>
 <body>
@@ -40,79 +95,140 @@
 			<div class=bg style="
 				background:black;
 				z-index: 1;
-			"></div>
+			">
+				<img src=./more/media/bgone.webp class=imagebg>
+			</div>
 			<div style="
 				color:white;
 				z-index:2;
-				font-size: 32px;
-			">
-				<span>></span>
+				margin-bottom:10px;
+			" class=bigone>
+				<span>>></span>
 				<span>Entertaiment</span>	
 			</div>
 			<div style="
 				color:white;
 				z-index:2;
-				font-size: 12px;
-			">
+			" class=smallone>
 				<span id=label>
 					- 
 				</span>
 			</div>
-		</div>	
+		</div>
+		<div class=onepage>
+			<div class=bg style="
+				background:black;
+				z-index: 1;
+			">
+				<img src=./more/media/bgtwo.jpg class=imagebg>
+			</div>
+			<div style="
+				color:white;
+				z-index:2;
+				margin-bottom:10px;
+			" class=bigone>
+				<span>>></span>
+				<span>Game Development</span>	
+			</div>
+			<div style="
+				color:white;
+				z-index:2;
+			" class=smallone>
+				<span id=label>
+					- 
+				</span>
+			</div>
+		</div>
+		<div class=onepage>
+			<div class=bg style="
+				background:black;
+				z-index: 1;
+			">
+				<img src=./more/media/bgthree.jpg class=imagebg>
+			</div>
+			<div style="
+				color:white;
+				z-index:2;
+				margin-bottom:10px;
+			" class=bigone>
+				<span>>></span>
+				<span>Software Development</span>	
+			</div>
+			<div style="
+				color:white;
+				z-index:2;
+			" class=smallone>
+				<span id=label>
+					- 
+				</span>
+			</div>
+		</div>
+		<div class=onepage>
+			<div class=bg style="
+				background:black;
+				z-index: 1;
+			">
+				<img src=./more/media/bgfour.jpg class=imagebg>
+			</div>
+			<div style="
+				color:white;
+				z-index:2;
+				margin-bottom:10px;
+			" class=bigone>
+				<span>>></span>
+				<span>Freelancing</span>	
+			</div>
+			<div style="
+				color:white;
+				z-index:2;
+			" class=smallone>
+				<span id=label>
+					- 
+				</span>
+			</div>
+		</div>
+		<div class=onepage>
+			<div class=bg style="
+				background:black;
+				z-index: 1;
+			"></div>
+			<div style="
+				color:white;
+				z-index:2;
+				margin-bottom:10px;
+			" class=bigone>
+				<span>>></span>
+				<span>Teach How To Code</span>	
+			</div>
+			<div style="
+				color:white;
+				z-index:2;
+			" class=smallone>
+				<span id=label>
+					- 
+				</span>
+			</div>
+		</div>
+		<div
+		style="
+			position: fixed;
+			z-index: 3;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			justify-content: flex-end;
+			gap:20px;
+		"
+		>
+			<div class="button uprotate" style=margin-top:20px;margin-right:20px; id=up><<</div>
+			<div class="button downrotate" style=margin-bottom:20px;margin-right:20px; id=down>>></div>
+		</div>
 	</div>
-	<script>
-		// define the target
-		const target = document.querySelector('#label');
-		// wallking label
-		const labels = [
-			"We are Siku Entertaiment",
-			"We made games, apps and more!",
-			"We also do freelancing"
-		];
-		let intervalId;
-
-		const walking = (labels,target,time=1000,delays=1000)=>{
-			let oi = 0;
-			let ii = 0;
-			const oiend = labels.length;
-			let iiend = labels[oi].length;
-			let char = labels[oi][ii];
-			const display = (char)=>{
-				target.innerHTML += char;
-				ii += 1;
-				if(ii === iiend){
-					// delay
-					delay();
-				}
-			}
-			const deletE = ()=>{
-				target.innerHTML = '- ';
-			}
-			const run = ()=>{
-				intervalId = setInterval(()=>{
-					char = labels[oi][ii];
-					display(char);
-				},time);
-			}
-			const delay = ()=>{
-				clearInterval(intervalId);
-				setTimeout(()=>{
-					deletE();
-					ii = 0;
-					oi += 1;
-					if(oi === oiend){
-						oi = 0;
-					}
-					iiend = labels[oi].length;
-					char = labels[oi][ii];
-					display(char);
-					run();
-				},delays);
-			}
-			display(char);
-			run();
-		}
-		walking(labels,target,100);
-	</script>
+	<script src=./more/scripts/labels.js></script>
+	<script src=./more/scripts/app.js></script>
 </body>
 </html>
